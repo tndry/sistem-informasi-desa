@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('section_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('section_id')->constrained()->onDelete('cascade');
+            $table->foreignId('section_id')->constrained('sections')->onDelete('cascade');
             $table->string('title');
-            $table->text('excerpt');
-            $table->longText('content');
+            $table->text('content')->nullable();
+            $table->json('metadata')->nullable(); // Bisa menyimpan pengaturan khusus section
+            $table->boolean('is_active')->default(true);
+            $table->integer('order')->default(0);
             $table->timestamps();
         });
     }
