@@ -15,5 +15,20 @@ class Settings extends Model
         'background_image',
         'color_primary',
         'color_secondary',
+        'deskripsi_desa',
+        'alamat_desa',
+        'telepon',
+        'email',
+        'social_media',
+        'kode_pos',
+        'kecamatan',
+        'kabupaten',
+        'provinsi',
+        'koordinat_lokasi',
+    ];
+
+    protected $casts = [
+        'social_media' => 'json',
+        'koordinat_lokasi' => 'json',
     ];
 }

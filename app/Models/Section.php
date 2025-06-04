@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\SectionItem;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Section extends Model
 {
@@ -12,9 +14,16 @@ class Section extends Model
     protected $fillable = [
         'name',
         'slug',
+        'description',
+        'is_active',
+        'order',
     ];
 
-    public function items()
+    protected $casts = [
+        'is_active' => 'boolean',
+    ];
+
+    public function sectionItems()
     {
         return $this->hasMany(SectionItem::class);
     }

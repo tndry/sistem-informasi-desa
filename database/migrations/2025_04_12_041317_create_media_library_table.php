@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('media_library', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('section_item_id')->constrained('section_items')->onDelete('cascade');
+            $table->foreignId('section_item_id')->nullable()->constrained('section_items')->onDelete('set null');
             $table->string('file_name');
             $table->string('file_path');
+            $table->string('mime_type');
             $table->string('caption')->nullable();
             $table->string('type')->nullable();
+            $table->unsignedBigInteger('file_size')->nullable();
             $table->timestamps();
         });
     }
